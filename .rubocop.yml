@@ -1,0 +1,26 @@
+require:
+  - rubocop-airbnb
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - bin/**
+    - db/schema.rb
+    - db/seeds.rb
+    - config/environments/**
+    - config/initializers/**
+    - db/**/*
+    - vendor/**/*
+    - config/**/*
+
+RSpec/VerifiedDoubles:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: true
+
+Layout/EmptyLinesAroundAccessModifier:
+  Enabled: true
