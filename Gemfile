@@ -5,6 +5,9 @@ ruby "3.2.2"
 
 gem "bootsnap", require: false
 gem "cssbundling-rails"
+gem 'devise'
+gem 'faker'
+gem "interactor", "~> 3.0"
 gem "jbuilder"
 gem "jsbundling-rails"
 gem "pg", "~> 1.1"
@@ -15,8 +18,6 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i(mingw mswin x64_mingw jruby)
-gem "interactor", "~> 3.0"
-gem 'devise'
 
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw)
