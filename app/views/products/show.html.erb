@@ -1,0 +1,10 @@
+<%= render "shared/shopping_cart" %>
+<%= link_to product_path(@product.id), target: '_blank' do%>
+	<h3><%= @product.id%><%= @product.name%></h3>
+	<%if @product.image.present? %>
+	    <p><%=image_tag product.image%></p>
+	<%end%>
+	<p>Price: <%=number_to_currency @product.price%></p>
+	<p><%=@product.description%></p>
+<%end%>
+<p><%= button_to 'Add To Cart', add_to_cart_shopping_cart_path(@product.id),  method: :post%></p>

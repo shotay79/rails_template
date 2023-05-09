@@ -1,0 +1,9 @@
+<details>
+  <summary>Shopping Cart</summary>
+  <ul>
+    <%@cart.each do|product|%>
+      <li><p><%=product.name%> * <%=session[:cart][product.id]%><%= button_to 'Remove From Cart', remove_from_cart_shopping_cart_path(product.id),  method: :delete%></p></li>
+    <%end%>
+  </ul>
+    <p><%= link_to 'View Cart', shopping_cart_index_path%></p>
+</details>
