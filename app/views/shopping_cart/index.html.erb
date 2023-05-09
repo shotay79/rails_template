@@ -1,20 +1,72 @@
-<h1>Shopping Cart</h1>
-<ul>
-  <%@cart.each do|product|%>
-    <li>
-      <div class="row">
-        <%=product.name%> 
-        <%if product.image.present?%>
-          <p><%=image_tag product.image%></p>
-        <%end%>
-        <%= form_tag shopping_cart_path(product.id), method: :put do %>
-          <%= text_field_tag :quantity, session[:cart][product.id] %>
-          <%= submit_tag 'Update'%>
-
-        <%end%>
-      <p><%= button_to 'Remove From Cart', remove_from_cart_shopping_cart_path(product.id),  method: :delete%></p>
+  <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+    <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+      <div class="flex items-start justify-between">
+        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping cart</h2>
+        
       </div>
-    </li>
-  <%end%>
-</ul>
-<h1><p><%= link_to 'Checkout', nil, class:'btn btn-center'%></h1>
+
+      <div class="mt-8">
+        <div class="flow-root">
+          <ul role="list" class="-my-6 divide-y divide-gray-200">
+            <%@cart.each do|product|%>
+
+              <li class="flex py-6">
+                <%if product.image.present?%>
+                  <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                    <%=image_tag product.image, class:"h-full w-full object-cover object-center"%>
+                  </div>
+                <%end%>
+
+                <div class="ml-4 flex flex-1 flex-col">
+                  <div>
+                    <div class="flex justify-between text-base font-medium text-gray-900">
+                      <h3>
+                        <%= link_to product_path(product.id) do%>
+                          <%=product.name%> 
+                        <%end%>
+                      </h3>
+                      <p class="ml-4"><%=number_to_currency(session[:cart][product.id] * product.price)%></p>
+                    </div>
+                    <p class="mt-1 text-sm text-gray-500"><%=product.description%> </p>
+                  </div>
+                  <div class="flex flex-1 items-end justify-between text-sm">
+                    <%= form_tag shopping_cart_path(product.id), method: :put do %>
+                    <p > <%= text_field_tag :quantity, session[:cart][product.id],class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %></p>
+                      <%= submit_tag 'Update',class:"font-medium text-indigo-600 hover:text-indigo-500"%>
+
+                    <%end%>
+
+                    <div class="flex">
+                      <%= button_to 'Remove From Cart', remove_from_cart_shopping_cart_path(product.id),  method: :delete,class:"font-medium text-indigo-600 hover:text-indigo-500"%></p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            <%end%>
+            <!-- More products... -->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-200 px-4 py-6 sm:px-6">
+      <div class="flex justify-between text-base font-medium text-gray-900">
+        <p>Subtotal</p>
+        <p>$</p>
+      </div>
+      <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+      <div class="mt-6">
+          <%= link_to 'Checkout', new_order_path, class:"flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"%>
+      </div>
+      <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
+        <p>
+          or
+          <%=link_to root_path, class:"font-medium text-indigo-600 hover:text-indigo-500" do%>
+            Continue Shopping
+            <span aria-hidden="true"> &rarr;</span>
+          <%end%>
+        </p>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,21 @@
+
+<div class="justify-self-center">
+  <%=form_with model: @order do |f|%>
+    <div class="mb-6">
+      <%= f.label :customer_name, "Enter Your Name" ,class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= f.text_field :customer_name, class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Enter Your Name", required: true %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :shipping_address, "Enter Your Shipping Address" ,class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= f.text_field :shipping_address, class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Enter Your Shipping Address", required: true %>
+    </div>
+
+    <div class="mb-6">
+      <%= f.label :phone_no, "Enter Your Phone No" ,class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+      <%= f.telephone_field :phone_no, class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Enter Your Phone No", required: true %>
+    </div>
+    
+      <%= f.submit :submit%>
+  <%end%>
+</div>

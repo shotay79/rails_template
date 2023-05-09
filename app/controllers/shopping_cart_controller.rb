@@ -1,5 +1,5 @@
 class ShoppingCartController < ApplicationController
-	def index	
+	def index
 	end
 	def update
 		quantity = params[:quantity].to_i

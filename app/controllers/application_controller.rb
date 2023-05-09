@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-	before_action :initialize_session
+	before_action :initialize_session,:current_user?
 	before_action :load_cart
 
 	private
@@ -10,5 +10,8 @@ class ApplicationController < ActionController::Base
 
 		def load_cart
 			@cart = Product.find(session[:cart].keys)
+		end
+		def current_user?
+			@current_user = current_user
 		end
 end
