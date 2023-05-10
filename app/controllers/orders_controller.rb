@@ -4,9 +4,7 @@ class OrdersController < ApplicationController
 		@orders = current_user.orders
 	end	
 	def new
-		# @order = Order.new
-		  flash[:succes] = "Order Created"
-		  redirect_to orders_path
+		@order = Order.new
 		
 	end
 	
@@ -14,8 +12,9 @@ class OrdersController < ApplicationController
 		@order = Order.new(order_params)
 		@order.user  = current_user
 		if @order.save
-			session[:cart] = {}
-		  redirect_to orders_path, notice: "Book not found"
+			session[:cart] = {}			
+		  flash[:succes] = "Order Created"
+		  redirect_to orders_path
 		else
 	      render :new
 		end
