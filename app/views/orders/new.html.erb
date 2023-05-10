@@ -1,21 +1,165 @@
+    <div>
+        <div class="w-full bg-white border-t border-b border-gray-200 px-5 py-10 text-gray-800">
+            <div class="w-full">
+                <div class="-mx-3 md:flex items-start">
+                    <div class="px-3 md:w-7/12 lg:pr-10">
 
-<div class="justify-self-center">
-  <%=form_with model: @order do |f|%>
-    <div class="mb-6">
-      <%= f.label :customer_name, "Enter Your Name" ,class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-      <%= f.text_field :customer_name, class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Enter Your Name", required: true %>
+                        <div class="w-full mx-auto text-gray-800 font-light mb-6 border-b border-gray-200 pb-6">
+                          <ul role="list" class="-my-6 divide-y divide-gray-200">
+                            <%@cart.each do|product|%>
+
+                              <li class="flex py-6">
+                                <%if product.image.present?%>
+                                  <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                    <%=image_tag product.image, class:"h-full w-full object-cover object-center"%>
+                                  </div>
+                                <%end%>
+
+                                <div class="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div class="flex justify-between text-base font-medium text-gray-900">
+                                      <h3>
+                                        <%= link_to product_path(product.id) do%>
+                                          <%=product.name%> 
+                                        <%end%>
+                                      </h3>
+                                      <p class="ml-4"><%=number_to_currency(session[:cart][product.id] * product.price)%></p>
+                                    </div>
+                                    <p class="mt-1 text-sm text-gray-500"><%=product.description%> </p>
+                                  </div>
+                                  <div class="flex flex-1 items-end justify-between text-sm">
+                                    <p>QTY: <%=session[:cart][product.id]%></p>
+                                  </div>
+                                </div>
+                              </li>
+                            <%end%>
+                            <!-- More products... -->
+                          </ul>
+                        </div>
+                        <div class="mb-6 pb-6 border-b border-gray-200 md:border-none text-gray-800 text-xl">
+                            <div class="w-full flex items-center">
+                                <div class="flex-grow">
+                                    <span class="text-gray-600">Total</span>
+                                </div>
+                                <div class="pl-3">
+                                    <span class="font-semibold"> <p><%=number_to_currency @subtotal%></p></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-3 md:w-5/12">
+                      <%=form_with model: @order do |f|%>
+                        <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 p-3 text-gray-800 font-light mb-6">
+                            <div class="justify-self-center">
+                                <div class="mb-6">
+                                  <%= f.label :customer_name, "Enter Your Name" ,class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                                  <%= f.text_field :customer_name, class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Enter Your Name", required: true %>
+                                </div>
+
+                                <div class="mb-6">
+                                  <%= f.label :shipping_address, "Enter Your Shipping Address" ,class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                                  <%= f.text_field :shipping_address, class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Enter Your Shipping Address", required: true %>
+                                </div>
+
+                                <div class="mb-6">
+                                  <%= f.label :phone_no, "Enter Your Phone No" ,class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                                  <%= f.telephone_field :phone_no, class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Enter Your Phone No", required: true %>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="w-full mx-auto rounded-lg bg-white border border-gray-200 text-gray-800 font-light mb-6">
+                            <div class="w-full p-3 border-b border-gray-200">
+                                <div class="mb-5">
+                                    <label for="type1" class="flex items-center cursor-pointer">
+                                        <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type1" checked>
+                                        <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" class="h-6 ml-3">
+                                    </label>
+                                </div>
+                                <div>
+                                    <div class="mb-3">
+                                        <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Name on card</label>
+                                        <div>
+                                            <input class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="John Smith" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Card number</label>
+                                        <div>
+                                            <input class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="0000 0000 0000 0000" type="text"/>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 -mx-2 flex items-end">
+                                        <div class="px-2 w-1/4">
+                                            <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Expiration date</label>
+                                            <div>
+                                                <select class="form-select w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                                                    <option value="01">01 - January</option>
+                                                    <option value="02">02 - February</option>
+                                                    <option value="03">03 - March</option>
+                                                    <option value="04">04 - April</option>
+                                                    <option value="05">05 - May</option>
+                                                    <option value="06">06 - June</option>
+                                                    <option value="07">07 - July</option>
+                                                    <option value="08">08 - August</option>
+                                                    <option value="09">09 - September</option>
+                                                    <option value="10">10 - October</option>
+                                                    <option value="11">11 - November</option>
+                                                    <option value="12">12 - December</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="px-2 w-1/4">
+                                            <select class="form-select w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
+                                                <option value="2025">2025</option>
+                                                <option value="2026">2026</option>
+                                                <option value="2027">2027</option>
+                                                <option value="2028">2028</option>
+                                                <option value="2029">2029</option>
+                                            </select>
+                                        </div>
+                                        <div class="px-2 w-1/4">
+                                            <label class="text-gray-600 font-semibold text-sm mb-2 ml-1">Security code</label>
+                                            <div>
+                                                <input class="w-full px-3 py-2 mb-1 border border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="000" type="text"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full p-3">
+                                <label for="type2" class="flex items-center cursor-pointer">
+                                    <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type2">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" width="80" class="ml-3"/>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <%= f.submit :submit, class:"block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold"%>
+                        </div>
+                        <%end%>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-5">
+            <div class="text-center text-gray-400 text-sm">
+                <a href="https://www.buymeacoffee.com/scottwindon" target="_blank" class="focus:outline-none underline text-gray-400"><i class="mdi mdi-beer-outline"></i>Buy me a beer</a> and help support open-resource
+            </div>
+        </div>
     </div>
 
-    <div class="mb-6">
-      <%= f.label :shipping_address, "Enter Your Shipping Address" ,class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-      <%= f.text_field :shipping_address, class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Enter Your Shipping Address", required: true %>
+    <!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
+    <div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
+        <div>
+            <a title="Buy me a beer" href="https://www.buymeacoffee.com/scottwindon" target="_blank" class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
+                <img class="object-cover object-center w-full h-full rounded-full" src="https://i.pinimg.com/originals/60/fd/e8/60fde811b6be57094e0abc69d9c2622a.jpg"/>
+            </a>
+        </div>
     </div>
-
-    <div class="mb-6">
-      <%= f.label :phone_no, "Enter Your Phone No" ,class:"block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-      <%= f.telephone_field :phone_no, class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500", placeholder:"Enter Your Phone No", required: true %>
-    </div>
-    
-      <%= f.submit :submit%>
-  <%end%>
-</div>

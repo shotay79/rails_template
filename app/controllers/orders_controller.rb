@@ -4,14 +4,18 @@ class OrdersController < ApplicationController
 		@orders = current_user.orders
 	end	
 	def new
-		@order = Order.new
+		# @order = Order.new
+		  flash[:succes] = "Order Created"
+		  redirect_to orders_path
+		
 	end
 	
 	def create
 		@order = Order.new(order_params)
 		@order.user  = current_user
 		if @order.save
-		  redirect_to others_path
+			session[:cart] = {}
+		  redirect_to orders_path, notice: "Book not found"
 		else
 	      render :new
 		end
