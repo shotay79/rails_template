@@ -1,0 +1,12 @@
+2023-05-15 10:30:36.641 PKT [3384] LOG:  starting PostgreSQL 14.7 (Homebrew) on x86_64-apple-darwin22.1.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.202), 64-bit
+2023-05-15 10:30:36.643 PKT [3384] LOG:  listening on IPv6 address "::1", port 5432
+2023-05-15 10:30:36.643 PKT [3384] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2023-05-15 10:30:36.643 PKT [3384] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2023-05-15 10:30:36.652 PKT [3385] LOG:  database system was shut down at 2023-05-14 21:26:19 PKT
+2023-05-15 10:30:36.664 PKT [3384] LOG:  database system is ready to accept connections
+2023-05-15 10:55:20.400 PKT [6503] FATAL:  database "db/development.postgres" does not exist
+2023-05-15 10:55:20.437 PKT [6504] ERROR:  syntax error at or near "." at character 41
+2023-05-15 10:55:20.437 PKT [6504] STATEMENT:  DROP DATABASE IF EXISTS "db/development"."postgres"
+2023-05-15 10:57:13.618 PKT [6755] ERROR:  syntax error at or near "." at character 33
+2023-05-15 10:57:13.618 PKT [6755] STATEMENT:  CREATE DATABASE "db/development"."postgresql" ENCODING = 'utf8'
+2023-05-15 10:57:50.909 PKT [6867] FATAL:  database "db/development" does not exist

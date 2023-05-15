@@ -1,0 +1,8 @@
+<%= turbo_frame_tag @product do%>
+   <%= simple_form_for @product do |f| %>
+      <%= f.input :name , required: true %>
+      <%= f.input :description , required: true %>
+      <%= f.input :price , required: true %>
+      <%= f.button :submit %>
+   <% end %>
+<%end%>

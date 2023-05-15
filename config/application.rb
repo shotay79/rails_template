@@ -6,27 +6,10 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module RailsTemplate
+module DeviseUsingRails7
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-
-    config.generators do |g|
-      g.skip_routes true
-      g.stylesheets false
-      g.javascripts false
-      g.helper false
-      g.decorator false
-      g.test_framework false
-      g.fixture_replacement :factory_bot, dir: 'spec/factories'
-      g.template_engine :erb
-    end
-
-    config.time_zone = 'Tokyo'
-    config.log_tags = %i[request_id]
-    config.i18n.default_locale = :ja
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
-    config.i18n.available_locales = [:en, :ja]
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -35,6 +18,5 @@ module RailsTemplate
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.action_controller.include_all_helpers = false
   end
 end
