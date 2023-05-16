@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es6", "dom", "es2017"],
+    "module": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es6",
+    "jsx": "react",
+    "noEmit": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noErrorTruncation": true,
+    "paths": {
+      "~/*": ["./*"],
+      "~": ["."]
+    }
+  },
+  "exclude": [
+    "**/*.spec.ts",
+    "node_modules",
+    "vendor",
+    "public",
+    "app/javascript/generated/graphql.tsx",
+  ],
+  "compileOnSave": false
+}

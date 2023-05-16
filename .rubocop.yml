@@ -1,5 +1,6 @@
 require:
   - rubocop-airbnb
+  - ./rubocop/rubocop
 
 AllCops:
   NewCops: enable
@@ -23,4 +24,7 @@ Bundler/OrderedGems:
   Enabled: true
 
 Layout/EmptyLinesAroundAccessModifier:
+  Enabled: true
+
+SmartMind/Interactor:
   Enabled: true
