@@ -1,0 +1,20 @@
+# アクション名
+name: eslint
+on: [push]
+
+jobs:
+  run:
+    name: Run Eslint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: yarn install
+        run: yarn install
+      - name: eslint
+        uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review # Change reporter.
+          eslint_flags: 'src/**/*.{ts,tsx}'
+      - name: Run eslint
+        run: yarn lint
