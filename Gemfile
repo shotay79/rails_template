@@ -24,6 +24,8 @@ end
 
 group :development do
   gem 'rubocop-airbnb'
+  gem 'seedbank'
+  gem 'solargraph'
   gem "web-console"
 end
 
