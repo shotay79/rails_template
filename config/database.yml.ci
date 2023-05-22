@@ -7,8 +7,5 @@ default: &default
   pool: 5
   database: <%= ENV['POSTGRES_DB'] %>
 
-development:
-  <<: *default
-
 test:
   <<: *default
