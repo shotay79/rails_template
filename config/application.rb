@@ -36,5 +36,6 @@ module RailsTemplate
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.action_controller.include_all_helpers = false
+    config.autoload_paths << Rails.root.join("app", "interactions")
   end
 end

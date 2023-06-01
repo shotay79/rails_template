@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 
+gem 'active_interaction', '~> 5.3'
 gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "interactor-rails", "~> 2.0"
