@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
+ruby "3.2.0"
 
 gem 'active_interaction', '~> 5.3'
 gem "bootsnap", require: false
@@ -24,8 +24,6 @@ end
 
 group :development do
   gem 'rubocop-airbnb'
-  gem 'seedbank'
-  gem 'solargraph'
   gem "web-console"
 end
 
